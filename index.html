@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Celokuhle | From Talent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@200;300;400;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #faf7f2;
+            --text-main: #1a1a1a;
+            --accent-rose: #8a3a3a;
+            --accent-gold: #c5a059;
+            --soft-blush: #f3e9e5;
+        }
+
+        * {
+            cursor: none;
+            /* Custom cursor implementation for that Awwwards feel */
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-script {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-rose);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        #cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent-rose);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.2s ease, top 0.15s ease, left 0.15s ease;
+            opacity: 0.3;
+        }
+
+        /* Hero Text Animation */
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .reveal-text span {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal-text.active span {
+            transform: translateY(0);
+        }
+
+        /* Horizontal Scroll Masking */
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Section Fade */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth Bokeh Background */
+        .bokeh {
+            position: fixed;
+            width: 40vw;
+            height: 40vw;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Image Masking */
+        .img-reveal {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-reveal img {
+            transform: scale(1.2);
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .img-reveal.active img {
+            transform: scale(1);
+        }
+
+        /* Button Hover */
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .btn-luxury::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .btn-luxury:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        @media (max-width: 768px) {
+            * {
+                cursor: auto !important;
+            }
+
+            #cursor,
+            #cursor-follower {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- Animated Background -->
+    <div class="bokeh bg-rose-200 top-[-10%] left-[-10%]"></div>
+    <div class="bokeh bg-orange-100 bottom-[-10%] right-[-10%]"></div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 relative">
+        <nav
+            class="absolute top-0 w-full p-8 flex justify-between items-center text-[10px] uppercase tracking-[0.5em] font-semibold text-stone-500">
+            <span>February 14, 2026</span>  
+            <span class="text-rose-800">For Celokuhle</span>
+        </nav>
+
+        <div class="text-center">
+            <h2 class="reveal-text text-xs uppercase tracking-[0.6em] mb-6 text-stone-400">
+                <span>The Architecture of My Heart</span>
+            </h2>
+            <h1 class="font-serif text-6xl md:text-9xl leading-none text-rose-950 reveal-text mb-8">
+                <span>Celokuhle</span>
+            </h1>
+            <div class="w-px h-24 bg-rose-200 mx-auto mb-8 scale-y-0 transition-transform duration-1000 origin-top"
+                id="hero-line"></div>
+            <p class="font-script text-3xl md:text-4xl text-rose-700 reveal-text">
+                <span>Created by Talent</span>
+            </p>
+        </div>
+
+        <div class="absolute bottom-12 animate-bounce opacity-40">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- The 6 Photos Gallery (Horizontal Movement) -->
+    <section class="py-32 overflow-hidden">
+        <div class="px-6 md:px-20 mb-16 section-reveal">
+            <h3 class="font-serif text-4xl italic text-rose-900">Through my lens...</h3>
+        </div>
+
+        <div class="gallery-container flex space-x-8 px-6 md:px-20 overflow-x-auto pb-12 snap-x">
+            <!-- PHOTO 1 -->
+            <div class="snap-center flex-shrink-0 w-[80vw] md:w-[400px]">
+                <div class="img-reveal aspect-[3/4] rounded-sm shadow-2xl">
+                    <img src="imgs/celo_1.jpg"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        alt="Celokuhle 1">
+                </div>
+                <p class="mt-4 text-[10px] uppercase tracking-widest text-stone-400">MOMENT I — THE LIGHT</p>
+            </div>
+            <!-- PHOTO 2 -->
+            <div class="snap-center flex-shrink-0 w-[80vw] md:w-[450px] mt-12">
+                <div class="img-reveal aspect-[4/5] rounded-sm shadow-2xl">
+                    <img src="imgs/celo_2.jpg"
+                        class="w-full h-full object-cover" alt="Celokuhle 2">
+                </div>
+                <p class="mt-4 text-[10px] uppercase tracking-widest text-stone-400">MOMENT II — ELEGANCE</p>
+            </div>
+            <!-- PHOTO 3 -->
+            <div class="snap-center flex-shrink-0 w-[80vw] md:w-[380px]">
+                <div class="img-reveal aspect-square rounded-sm shadow-2xl">
+                    <img src="imgs/celo_3.jpg"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        alt="Celokuhle 3">
+                </div>
+                <p class="mt-4 text-[10px] uppercase tracking-widest text-stone-400">MOMENT III — JOY</p>
+            </div>
+            <!-- PHOTO 4 -->
+            <div class="snap-center flex-shrink-0 w-[80vw] md:w-[420px] mt-24">
+                <div class="img-reveal aspect-[3/4] rounded-sm shadow-2xl">
+                    <img src="imgs/celo_4.jpg"
+                        class="w-full h-full object-cover" alt="Celokuhle 4">
+                </div>
+                <p class="mt-4 text-[10px] uppercase tracking-widest text-stone-400">MOMENT IV — STILLNESS</p>
+            </div>
+            <!-- PHOTO 5 -->
+            <div class="snap-center flex-shrink-0 w-[80vw] md:w-[400px]">
+                <div class="img-reveal aspect-[4/5] rounded-sm shadow-2xl">
+                    <img src="imgs/celo_5.jpg"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        alt="Celokuhle 5">
+                </div>
+                <p class="mt-4 text-[10px] uppercase tracking-widest text-stone-400">MOMENT V — CONNECTION</p>
+            </div>
+            <!-- PHOTO 6 -->
+            <div class="snap-center flex-shrink-0 w-[80vw] md:w-[450px] mt-8">
+                <div class="img-reveal aspect-[3/4] rounded-sm shadow-2xl">
+                    <img src="imgs/celo_6.jpg"
+                        class="w-full h-full object-cover" alt="Celokuhle 6">
+                </div>
+                <p class="mt-4 text-[10px] uppercase tracking-widest text-stone-400">MOMENT VI — ETERNITY</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Love Letter Section -->
+    <section class="py-32 px-6">
+        <div class="max-w-4xl mx-auto border-l border-rose-100 pl-8 md:pl-20 section-reveal">
+            <h3 class="text-xs uppercase tracking-[0.4em] text-stone-400 mb-12 italic">A Statement of Intent</h3>
+
+            <div class="space-y-12">
+                <h2 class="font-serif text-4xl md:text-6xl text-rose-950 leading-tight">
+                    To <span class="text-rose-800">Celokuhle</span>, the one who brings color to my grayscale world.
+                </h2>
+
+                <div class="text-lg md:text-2xl text-stone-600 font-light leading-relaxed max-w-2xl space-y-8">
+                    <p>
+                        They say perfection is an illusion, but every time I look at you, I wonder if they've ever
+                        actually met someone like you. Your presence is a masterclass in grace.
+                    </p>
+                    <p>
+                        Thank you for being my constant. For the way you speak my name and the way you make the most
+                        complex days feel simple. This isn't just code on a screen—it's a digital home for the gratitude
+                        I feel for you every single day.
+                    </p>
+                </div>
+
+                <div class="pt-12">
+                    <p class="font-script text-4xl text-rose-800">Yours forever,</p>
+                    <p class="font-serif text-xl tracking-widest text-rose-950 mt-2 uppercase">Talent</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons (Editorial Grid) -->
+    <section class="py-32 bg-[#1a1a1a] text-[#faf7f2]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5 section-reveal">
+                    <h4 class="text-rose-400 uppercase tracking-widest text-xs mb-4">The Details</h4>
+                    <h2 class="font-serif text-5xl md:text-7xl leading-tight">Why It’s Always You</h2>
+                </div>
+                <div class="md:col-span-7 space-y-16">
+                    <div class="flex gap-8 border-b border-white/10 pb-8 section-reveal">
+                        <span class="font-serif italic opacity-30">01</span>
+                        <p class="text-xl md:text-2xl">The way your eyes light up when you're talking about something
+                            you're passionate about.</p>
+                    </div>
+                    <div class="flex gap-8 border-b border-white/10 pb-8 section-reveal">
+                        <span class="font-serif italic opacity-30">02</span>
+                        <p class="text-xl md:text-2xl">How you make me feel heard in a world that is far too loud.</p>
+                    </div>
+                    <div class="flex gap-8 border-b border-white/10 pb-8 section-reveal">
+                        <span class="font-serif italic opacity-30">03</span>
+                        <p class="text-xl md:text-2xl">Your resilience. You are the strongest person I know, wrapped in
+                            the softest heart.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA / Footer -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+        <div class="section-reveal">
+            <div class="mb-12 inline-block p-4 border border-rose-200 rounded-full animate-pulse">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" class="text-rose-600">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+            </div>
+            <h2 class="font-serif text-5xl md:text-8xl text-rose-950 mb-12 italic">Happy Valentine’s,<br>Celokuhle.</h2>
+            <button class="btn-luxury uppercase tracking-[0.4em] text-xs font-bold text-stone-500 py-4"
+                onclick="window.scrollTo(0,0)">Back to beginning</button>
+        </div>
+
+        <footer class="mt-32 text-[10px] uppercase tracking-[0.3em] text-stone-400">
+            Design & Dev by Talent &bull; 2026 &bull; Only for You
+        </footer>
+    </section>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            setTimeout(() => {
+                follower.style.left = (e.clientX - 14) + 'px';
+                follower.style.top = (e.clientY - 14) + 'px';
+            }, 50);
+        });
+
+        // Trigger animations on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.reveal-text').forEach(el => el.classList.add('active'));
+            document.getElementById('hero-line').style.transform = 'scaleY(1)';
+        });
+
+        // Reveal animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section-reveal, .img-reveal').forEach(el => observer.observe(el));
+
+        // Hover effect for cursor
+        document.querySelectorAll('a, button, .img-reveal').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                follower.style.transform = 'scale(1.5)';
+                follower.style.backgroundColor = 'rgba(138, 58, 58, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.style.transform = 'scale(1)';
+                follower.style.backgroundColor = 'transparent';
+            });
+        });
+    </script>
+</body>
+
+</html>
