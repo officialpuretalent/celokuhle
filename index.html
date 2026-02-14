@@ -147,6 +147,61 @@
             transform-origin: left;
         }
 
+        /* Video Container Styling */
+        .video-card {
+            position: relative;
+            aspect-ratio: 9/16;
+            background: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .video-card video {
+            display: block;
+        }
+
+        .video-card .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .video-card.playing .play-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-card .play-btn {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: transform 0.2s ease, background 0.2s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-card .play-btn:hover {
+            transform: scale(1.08);
+            background: #fff;
+        }
+
+        .video-card .play-btn svg {
+            margin-left: 4px;
+        }
+
         @media (max-width: 768px) {
             * {
                 cursor: auto !important;
@@ -173,7 +228,7 @@
     <section class="min-h-screen flex flex-col justify-center items-center px-6 relative">
         <nav
             class="absolute top-0 w-full p-8 flex justify-between items-center text-[10px] uppercase tracking-[0.5em] font-semibold text-stone-500">
-            <span>February 14, 2026</span>  
+            <span>February 14, 2024</span>
             <span class="text-rose-800">For Celokuhle</span>
         </nav>
 
@@ -259,6 +314,87 @@
         </div>
     </section>
 
+    <!-- TikTok Video Section -->
+    <section class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <h4 class="text-xs uppercase tracking-[0.5em] text-stone-400 mb-4">The Fun Side</h4>
+                <h2 class="font-serif text-4xl md:text-5xl text-rose-950">How You Make Me Feel</h2>
+                <p class="font-script text-2xl text-rose-700 mt-2">Lighthearted love, looping forever.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <!-- Video 1 -->
+                <div class="section-reveal">
+                    <div class="video-card" data-video-card>
+                        <video class="w-full h-full object-cover" loop playsinline data-video>
+                            <source
+                                src="fun_video_1.MP4"
+                                type="video/mp4">
+                        </video>
+                        <div class="play-overlay">
+                            <button type="button" class="play-btn" aria-label="Play video">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 text-white text-[10px] uppercase tracking-widest opacity-70">
+                            @us_forever</div>
+                    </div>
+                    <p class="mt-6 font-serif italic text-stone-600 text-center text-lg">“The way we just get each
+                        other.”</p>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="section-reveal delay-200 mt-12 md:mt-0">
+                    <div class="video-card" data-video-card>
+                        <video class="w-full h-full object-cover" loop playsinline data-video>
+                            <source
+                                src="fun_video_2.MP4"
+                                type="video/mp4">
+                        </video>
+                        <div class="play-overlay">
+                            <button type="button" class="play-btn" aria-label="Play video">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 text-white text-[10px] uppercase tracking-widest opacity-70">
+                            #LoveGoals</div>
+                    </div>
+                    <p class="mt-6 font-serif italic text-stone-600 text-center text-lg">“Sweet Poetry”</p>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="section-reveal delay-400 mt-12 md:mt-24">
+                    <div class="video-card" data-video-card>
+                        <video class="w-full h-full object-cover" loop playsinline data-video>
+                            <source
+                                src="fun_video_3.MP4"
+                                type="video/mp4">
+                        </video>
+                        <div class="play-overlay">
+                            <button type="button" class="play-btn" aria-label="Play video">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 text-white text-[10px] uppercase tracking-widest opacity-70">
+                            Celokuhle x Talent</div>
+                    </div>
+                    <p class="mt-6 font-serif italic text-stone-600 text-center text-lg">“Laughter is our love
+                        language.”</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Deep Love Letter Section -->
     <section class="py-32 px-6">
         <div class="max-w-4xl mx-auto border-l border-rose-100 pl-8 md:pl-20 section-reveal">
@@ -332,7 +468,7 @@
         </div>
 
         <footer class="mt-32 text-[10px] uppercase tracking-[0.3em] text-stone-400">
-            Design & Dev by Talent &bull; 2026 &bull; Only for You
+            Design & Dev by Talent &bull; 2024 &bull; Only for You
         </footer>
     </section>
 
@@ -369,7 +505,7 @@
         document.querySelectorAll('.section-reveal, .img-reveal').forEach(el => observer.observe(el));
 
         // Hover effect for cursor
-        document.querySelectorAll('a, button, .img-reveal').forEach(el => {
+        document.querySelectorAll('a, button, .img-reveal, .video-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 follower.style.transform = 'scale(1.5)';
                 follower.style.backgroundColor = 'rgba(138, 58, 58, 0.1)';
@@ -377,6 +513,62 @@
             el.addEventListener('mouseleave', () => {
                 follower.style.transform = 'scale(1)';
                 follower.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Videos: play one at a time (1 by 1)
+        const videoCards = document.querySelectorAll('[data-video-card]');
+        const allVideos = document.querySelectorAll('[data-video]');
+
+        function pauseAllExcept(currentVideo) {
+            allVideos.forEach(v => {
+                if (v !== currentVideo) {
+                    v.pause();
+                    v.currentTime = 0;
+                }
+            });
+            videoCards.forEach(card => {
+                const v = card.querySelector('[data-video]');
+                if (v && v !== currentVideo) card.classList.remove('playing');
+            });
+        }
+
+        videoCards.forEach(card => {
+            const video = card.querySelector('[data-video]');
+            const overlay = card.querySelector('.play-overlay');
+            const playBtn = card.querySelector('.play-btn');
+
+            if (!video || !overlay) return;
+
+            function showOverlay() {
+                card.classList.remove('playing');
+            }
+            function hideOverlay() {
+                card.classList.add('playing');
+            }
+
+            video.addEventListener('play', () => {
+                pauseAllExcept(video);
+                hideOverlay();
+            });
+            video.addEventListener('pause', showOverlay);
+            video.addEventListener('ended', showOverlay);
+
+            function togglePlay() {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlay();
+            });
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.play-btn')) return;
+                togglePlay();
             });
         });
     </script>
