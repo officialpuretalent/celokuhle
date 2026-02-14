@@ -556,6 +556,8 @@
 
             function togglePlay() {
                 if (video.paused) {
+                    // Pause any other playing video first, then play this one
+                    pauseAllExcept(video);
                     video.play();
                 } else {
                     video.pause();
